@@ -1,6 +1,8 @@
 import React from 'react';
 import {
+  ImageBackground,
   Image,
+  Button,
   Platform,
   ScrollView,
   StyleSheet,
@@ -15,42 +17,29 @@ import { MonoText } from '../components/StyledText';
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
+    drills: []
   };
 
   render() {
     return (
       <View style={styles.container}>
+
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
 
           <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
-
-            <Text style={styles.getStartedText}>
-              Hey my first react native app and stuff.
-            </Text>
+            <Text style={styles.introHeader}>Welcome to Stripes</Text>
+            <ImageBackground source={require('../assets/images/bjj_home_bg.jpeg')} style={{ width: '100%', height: "100%" }}>
+              <Button buttonStyle={{
+                backgroundColor: "rgba(92, 99,216, 1)",
+                width: 300,
+                height: 45,
+                borderColor: "transparent",
+                borderWidth: 0,
+                borderRadius: 5
+              }} title='Get Rolling' />
+            </ImageBackground>
           </View>
 
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
         </ScrollView>
 
         <View style={styles.tabBarInfoContainer}>
@@ -60,31 +49,12 @@ export default class HomeScreen extends React.Component {
             <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
           </View>
         </View>
-      </View>
+      </View >
     );
   }
 
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
+  _getDataFromAPI = () => {
 
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
   }
 
   _handleLearnMorePress = () => {
@@ -101,7 +71,8 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
+    height: '80%',
   },
   developmentModeText: {
     marginBottom: 20,
@@ -185,4 +156,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
+  introHeader: {
+    fontSize: 40,
+    color: '#fff',
+  }
 });
