@@ -6,6 +6,7 @@ import AppNavigator from './navigation/AppNavigator';
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
+    drills: ''
   };
 
   render() {
@@ -25,6 +26,14 @@ export default class App extends React.Component {
         </View>
       );
     }
+  }
+
+  async componentDidMount() {
+    const response = await fetch('https://stripes-backend.herokuapp.com/');
+    const json = await response.json();
+    console.log(json)
+    this.setState({ drills: json })
+    console.log('drills: ', this.state.drills)
   }
 
   _loadResourcesAsync = async () => {

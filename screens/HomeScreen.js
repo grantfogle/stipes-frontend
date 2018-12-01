@@ -17,7 +17,6 @@ import { MonoText } from '../components/StyledText';
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
-    drills: []
   };
 
   render() {
@@ -28,33 +27,23 @@ export default class HomeScreen extends React.Component {
 
           <View style={styles.getStartedContainer}>
             <Text style={styles.introHeader}>Welcome to Stripes</Text>
-            <ImageBackground source={require('../assets/images/bjj_home_bg.jpeg')} style={{ width: '100%', height: "100%" }}>
-              <Button buttonStyle={{
-                backgroundColor: "rgba(92, 99,216, 1)",
-                width: 300,
-                height: 45,
-                borderColor: "transparent",
-                borderWidth: 0,
-                borderRadius: 5
-              }} title='Get Rolling' />
-            </ImageBackground>
           </View>
+          <Button onPress={() => { this.onButtonPress() }}
+            title='Add ToDo'
+            color='#841584'
+            style={{ height: 40, backgroundColor: '#1e90ff' }} />
 
         </ScrollView>
 
-        <View style={styles.tabBarInfoContainer}>
+        {/* <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
 
           <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
             <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
+          </View> */}
+        {/* </View> */}
       </View >
     );
-  }
-
-  _getDataFromAPI = () => {
-
   }
 
   _handleLearnMorePress = () => {
@@ -71,8 +60,8 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
-    height: '80%',
+    flexDirection: 'column',
+    backgroundColor: '#34495e',
   },
   developmentModeText: {
     marginBottom: 20,
@@ -89,13 +78,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 20,
   },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
+
   getStartedContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
@@ -159,5 +142,6 @@ const styles = StyleSheet.create({
   introHeader: {
     fontSize: 40,
     color: '#fff',
-  }
+    width: '100%',
+  },
 });
